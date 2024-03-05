@@ -7,7 +7,7 @@ from config.settings.base import AUTH_USER_MODEL
 
 
 class Message(BaseModel):
-    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user")
+    # user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user")
     sender = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="from_user")
     recipient = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="to_user")
     body = models.TextField(null=True)
@@ -15,7 +15,7 @@ class Message(BaseModel):
 
     def sender_message(from_user, to_user, body):
         sender_message = Message(
-            user=from_user,
+            # user=from_user,
             sender=from_user,
             recipient=to_user,
             body=body,
@@ -24,7 +24,7 @@ class Message(BaseModel):
         sender_message.save()
 
         recipient_message = Message(
-            user=to_user,
+            # user=to_user,
             sender=from_user,
             reciepient=from_user,
             body=body,
